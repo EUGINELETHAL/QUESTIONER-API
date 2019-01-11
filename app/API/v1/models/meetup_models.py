@@ -1,4 +1,7 @@
 class Meetup:
+    meetup_list=[
+        
+    ]
     """
     This class represents the meetup model.
     """
