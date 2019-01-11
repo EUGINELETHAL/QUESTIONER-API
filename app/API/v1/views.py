@@ -18,4 +18,4 @@ def get_meetup(id):
         meetup= [meetup for meetup in meetups if meetup['id'] ==id]
         if len(meetup) == 0:
             return jsonify({'Message': "Meetup not found"})
-        return jsonify({'meetup':meetup[0]})
+        return jsonify({"status":200,'meetup':meetup[0],"message":"request was successful"})
