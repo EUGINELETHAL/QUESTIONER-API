@@ -10,4 +10,4 @@ def get_all_meetups():
     """
     View all meetups.
     """
-    return jsonify({'meetup':meetup}), 200
+    return jsonify({"status":200,'meetup':meetup,"message":"request was successful"})

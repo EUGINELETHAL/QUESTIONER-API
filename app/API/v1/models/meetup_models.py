@@ -1,5 +1,6 @@
 meetup = {
-            "meetup_id" : 1,
+        "meetup_id" : 1,
         "Createdon":"Monday",
         "Location":"Andela",
-        "HappeningOn":"Tuesday"}
+        "HappeningOn":"20.7.2018",
+}
