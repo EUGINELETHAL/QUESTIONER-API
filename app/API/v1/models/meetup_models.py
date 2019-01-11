@@ -1,10 +1,10 @@
-class Meetup:
-    meetup_list=[
-        
-    ]
-    """
+meetup_list = []
+
+"""
     This class represents the meetup model.
+
     """
+class Meetup:
     def __init__(self, meetup_list):
         """
         Initialize meetups list.
@@ -17,11 +17,17 @@ class Meetup:
         """
         return self.meetup_list
 
-    def add_meetup(self, meetup):
+    def add_meetup(self,meetup):
         """
         Append meetups to the meetup_list.
         """
-        self.meetup_list.append(meetup)  
+        meetup = {
+            "meetup_id" : 1,
+        "Createdon":"Monday",
+        "Location":"Andela",
+        "HappeningOn":"Tuesday"}
+
+        self.meetup_list.append(meetup)
 
     def delete_meetup(self, index):
         """
