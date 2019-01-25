@@ -1,7 +1,6 @@
 from flask import Flask, request, jsonify
 from .import v1
-from app.API.v1.models import meetup_models
-
+from app.API.v1.models.meetup_models import Meetup
 
 
 @v1.route('/api/v1/meetups/', methods=["POST"])
@@ -9,18 +8,20 @@ def post_meetup():
     '''post meetup'''
 
     meetupdata = request.get_json()
-    if not meetupdata:
-        return jsonify({"status": 400, "message": "expects only Application/JSON data"}), 400
-
-    topic = meetupdata.get('topic')
-    location = meetupdata.get('location')
-    happeningon = meetupdata.get('happeningon')
-    createdon = meetupdata.get('created_on')
-    tags = meetupdata.get('tags')
     
-    new_meetup = meetup_models.Meetup(topic, createdon, location, happeningon, tags).save_meetup()
-    return jsonify({'meetup': new_meetup}), 201
+    topic = meetupdata('topic')
+    location = meetupdata('location')
+    happeningon = meetupdata('happeningon')
+    createdon = meetupdata('created_on')
+    tags = meetupdata('tags')
+    
+    new_meetup = Meetup(topic, createdon, location, happeningon, tags)
+    added_meetup = new_meetup.save_meetup()
+
+    return jsonify({'meetup': added_meetup}), 201
 
 
-
-   
+@v1.route('/api/v1/meetups/', methods=["GET"])
+def get_meetups():
+    
+    return jsonify(Meetup.meetup_list)
