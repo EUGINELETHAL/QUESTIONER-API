@@ -12,7 +12,7 @@ def post_meetup():
         return jsonify({"status": 400, 
         "message": "expects only Application/JSON data"}), 400
     
-    topic = meetupdata('topic')
+    topic = meetupdata.('topic')
     location = meetupdata('location')
     happeningon = meetupdata('happeningon')
     createdon = meetupdata('created_on')
