@@ -1,10 +1,10 @@
 import json
 from datetime import datetime
 
-class QuestionModel():
+class Question():
     """Question Model."""
     questions = []
-    def __init__(self, user, meetup, title, body):
+    def __init__(self, user, meetup, title, body, votes):
         """Question Model class constructor."""
         # TODO: Link Questions to users to get the user who posted the question
         self.question_id = len(QuestionModel.questions) + 1
@@ -13,19 +13,19 @@ class QuestionModel():
         self.meetup = meetup
         self.title = title
         self.body = body
-        self.votes = 0
+        self.votes = votes
 
     def create_question_record(self):
         """Creating Question Record."""
-        new_question = dict(
-            id=self.question_id,
-            createdOn=self.created_on,
-            user=self.user,
-            meetup=self.meetup,
-            title=self.title,
-            body=self.body,
-            votes=self.votes
-        )
+        new_question = {
+            "question_id": self.question_id,
+            "createdOn": datetime.now(),
+            "user": self.user,
+            "meetup": self.meetup,
+            "title": self.title,
+            "body": self.body,
+            "votes": self.votes
+        }
         self.questions.append(new_question)
         return new_question
 
