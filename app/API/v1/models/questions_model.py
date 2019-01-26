@@ -3,11 +3,12 @@ from datetime import datetime
 
 class Question():
     """Question Model."""
-    questions = []
+    question_list = []
+    
     def __init__(self, user, meetup, title, body, votes):
         """Question Model class constructor."""
         # TODO: Link Questions to users to get the user who posted the question
-        self.question_id = len(QuestionModel.questions) + 1
+        self.question_id = len(Question.question_list) + 1
         self.created_on = json.dumps(datetime.now(), default=str)
         self.user = user
         self.meetup = meetup
@@ -26,7 +27,7 @@ class Question():
             "body": self.body,
             "votes": self.votes
         }
-        self.questions.append(new_question)
+        Question.question_list.append(new_question)
         return new_question
 
     

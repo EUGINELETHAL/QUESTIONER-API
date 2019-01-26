@@ -1,7 +1,6 @@
-from flask import Flask, request, jsonify, abort
+from flask import Flask, request, jsonify
 from .import v1
 from app.API.v1.models.meetup_models import Meetup
-from app.API.v1.models.questions_model import Question
 
 
 @v1.route('/api/v1/meetups/', methods=["POST"])
@@ -24,7 +23,6 @@ def post_meetup():
     return jsonify({'meetup': added_meetup, "status": 201, "message":
                     "meetup created  sucessfully"})
 
-
 @v1.route('/api/v1/meetups/', methods=["GET"])
 def get_meetups():
     
@@ -41,19 +39,3 @@ def fetch_single_meetup(meetupId):
         else:
             return "meetup Not Found"
 
-
-@v1.route('/api/v1/questions/', methods=["POST"])
-def post():
-        """POST request."""
-        if not request.json or not 'title' in request.json:
-            abort(400)
-        title = request.json["title"],
-        user = request.json.get("user"),
-        meetup = request.json.get("meetup")
-        body = request.json.get("body")
-        votes = request.json.get("votes")
-        createdon = request.json.get("createdon")
-
-        new_question = Question(user, meetup, title, body, votes, createdon)
-        save_question = new_question.create_question_record()
-        return jsonify({'question': save_question}), 201
