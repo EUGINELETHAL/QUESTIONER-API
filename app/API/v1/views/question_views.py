@@ -21,3 +21,15 @@ def post():
         save_question = new_question.create_question_record()
         return jsonify(({'question': save_question,"status": 201, "message":
                     "question created  sucessfully"}),201)
+
+@questionbp.route('/questions/<int:question_id>/upvote', methods=["PATCH"])
+def upvote_question(question_id):
+    '''
+    endpoint for upvoting a question
+    '''
+
+    vote = Question().upvote_question(question_id)
+
+    return jsonify({"status": 400, "data": vote}), 400
+
+   

@@ -31,3 +31,12 @@ class Question():
         return new_question
 
     
+    def upvote_question(self, question_id):
+            """Upvote question"""
+            questions = Question.question_list
+            upvote_question = [question for question in questions if question["id"] == question_id]
+            if upvote_question:
+                upvote_question[0]["votes"] = upvote_question[0]["votes"] + 1
+            return upvote_question
+                
+    
