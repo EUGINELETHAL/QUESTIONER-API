@@ -41,6 +41,4 @@ def downvote_question(question_id):
     vote = Question().downvote_question(question_id)
 
     return jsonify({"status": 400, "data": vote}), 400
-
-
    

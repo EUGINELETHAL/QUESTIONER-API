@@ -4,6 +4,7 @@ from datetime import datetime
 class Meetup():
 
     meetup_list = []
+    rsvps = []
     """
     define all meetup attributes and methods
 
@@ -48,3 +49,18 @@ class Meetup():
     def allMeetups(self):
         '''method for getting all meetup records'''
         return Meetup.meetup_list
+
+    def meetupRsvp(self, userId, meetupId, response):
+        '''
+        Method for getting rsvp meetup
+        '''
+        rsvp_data = {
+            "rsvpId": str(len(Meetup.rsvps) + 1),
+            "meetupId": meetupId,
+            "userId": userId,
+            "response": response
+        }
+
+        Meetup.rsvps.append(rsvp_data)
+        return rsvp_data, {"message": "attendance status confirmed"}
+
