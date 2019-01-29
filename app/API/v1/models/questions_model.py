@@ -5,12 +5,12 @@ class Question():
     """Question Model."""
     question_list = []
     
-    def __init__(self, user, meetup, title, body, votes):
+    def __init__(self, createdby, meetup, title, body, votes,createdOn):
         """Question Model class constructor."""
         # TODO: Link Questions to users to get the user who posted the question
         self.question_id = len(Question.question_list) + 1
-        self.created_on = json.dumps(datetime.now(), default=str)
-        self.user = user
+        self.createdon = datetime.now()
+        self.createdby = createdby
         self.meetup = meetup
         self.title = title
         self.body = body
@@ -20,8 +20,8 @@ class Question():
         """Creating Question Record."""
         new_question = {
             "question_id": self.question_id,
-            "createdOn": datetime.now(),
-            "user": self.user,
+            "createdon": datetime.now(),
+            "createdby": self.createdby,
             "meetup": self.meetup,
             "title": self.title,
             "body": self.body,

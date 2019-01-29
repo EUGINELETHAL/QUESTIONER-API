@@ -1,9 +1,9 @@
-from flask import Flask, request, jsonify
-from .import v1
+from flask import Flask, request, jsonify,Blueprint
 from app.API.v1.models.meetup_models import Meetup
+meetupbp = Blueprint('meetupbp', __name__)
 
 
-@v1.route('/api/v1/meetups/', methods=["POST"])
+@meetupbp.route('/api/v1/meetups/', methods=["POST"])
 def post_meetup():
     '''post meetup'''
 
@@ -23,13 +23,13 @@ def post_meetup():
     return jsonify({'meetup': added_meetup, "status": 201, "message":
                     "meetup created  sucessfully"})
 
-@v1.route('/api/v1/meetups/', methods=["GET"])
+@meetupbp.route('/api/v1/meetups/', methods=["GET"])
 def get_meetups():
     
     return jsonify(Meetup.meetup_list)
 
 
-@v1.route('/api/v1/meetups/<meetupId>', methods=["GET"])
+@meetupbp.route('/api/v1/meetups/<meetupId>', methods=["GET"])
 def fetch_single_meetup(meetupId):
         """Deals with fetching a single meetup."""
         meetups = Meetup.meetup_list
@@ -38,4 +38,3 @@ def fetch_single_meetup(meetupId):
             return single_meetup
         else:
             return "meetup Not Found"
-
