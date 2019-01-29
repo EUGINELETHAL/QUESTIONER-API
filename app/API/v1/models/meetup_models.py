@@ -14,7 +14,7 @@ class Meetup():
         initialize class
         '''
         self.meetupId = len(Meetup.meetup_list) + 1
-        self.created_on = datetime.now()
+        self.createdon = createdon
         self.topic = topic
         self.location = location
         self.happeningon = happeningon
@@ -27,9 +27,10 @@ class Meetup():
 
         meetup = {
             "meetupId": self.meetupId,
-            "created_on": self.created_on,
+            "created_on": self.createdon,
             "topic": self.topic,
             "location": self.location,
+            "happeningon": self.happeningon,
             "tags": self.tags
         }
 

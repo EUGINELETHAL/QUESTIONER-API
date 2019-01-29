@@ -7,7 +7,10 @@ def create_app(config_name):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_object(app_config[config_name])
     app.config.from_pyfile('config.py')
+
     # Registering the blueprint
-    from app.API.v1 import v1 as v1_blueprint
-    app.register_blueprint(v1_blueprint)
+    from app.API.v1.views.meetup_views import meetupbp
+    from app.API.v1.views.question_views import questionbp
+    app.register_blueprint(meetupbp)
+    app.register_blueprint(questionbp)
     return app
