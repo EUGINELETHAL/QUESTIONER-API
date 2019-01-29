@@ -7,7 +7,6 @@ class Question():
     
     def __init__(self, createdby, meetup, title, body, votes,createdOn):
         """Question Model class constructor."""
-        # TODO: Link Questions to users to get the user who posted the question
         self.question_id = len(Question.question_list) + 1
         self.createdon = datetime.now()
         self.createdby = createdby
@@ -38,5 +37,13 @@ class Question():
             if upvote_question:
                 upvote_question[0]["votes"] = upvote_question[0]["votes"] + 1
             return upvote_question
-                
+
+    def downvote_question(self, question_id):
+            """Upvote question"""
+            questions = Question.question_list
+            downvote_question = [question for question in questions if question["id"] == question_id]
+            if downvote_question:
+                downvote_question[0]["votes"] = downvote_question[0]["votes"] - 1
+            return downvote_question
+                            
     

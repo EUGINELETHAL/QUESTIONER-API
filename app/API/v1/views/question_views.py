@@ -28,8 +28,19 @@ def upvote_question(question_id):
     endpoint for upvoting a question
     '''
 
-    vote = Question().upvote_question(question_id)
+    vote_up = Question().upvote_question(question_id)
+
+    return jsonify({"status": 400, "data": vote_up}), 400
+
+@questionbp.route('/questions/<int:question_id>/upvote', methods=["PATCH"])
+def downvote_question(question_id):
+    '''
+    endpoint for upvoting a question
+    '''
+
+    vote = Question().downvote_question(question_id)
 
     return jsonify({"status": 400, "data": vote}), 400
+
 
    
