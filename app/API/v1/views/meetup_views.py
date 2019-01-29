@@ -39,18 +39,3 @@ def fetch_single_meetup(meetupId):
         else:
             return "meetup Not Found"
 @meetupbp.route('/api/v1/meetups/<meetupId>/rsvps', methods=["POST"])
-def meetup_rsvp(meetupId):
-    '''
-     endpoint for rsvp/ confirming meeting attendance
-    '''
-    rsvp_data = request.get_json()
-
-    if not rsvp_data:
-        return jsonify({"status": 400, "message": "expects only Application/JSON data"}), 400
-
-    meetupId = meetupId
-    userId = rsvp_data.get('userId')
-    response = rsvp_data.get('response')
-
-    rsvp = Meetup().meetupRsvp(userId, meetupId, response)
-    return jsonify({"status": 200, "data": rsvp})
