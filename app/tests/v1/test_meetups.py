@@ -31,7 +31,11 @@ class MeetupTest(unittest.TestCase):
     def test_create_meetup(self):
         '''test the endpoint of creating new meetup'''
 
-        
+        res = self.client.post("/api/v1/meetups/", data=json.dumps(self.meetup),
+                               content_type="application/json")
+        response_data = json.loads(res.data.decode())
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(response_data["message"], "meetup created successfully")
 
             
         
