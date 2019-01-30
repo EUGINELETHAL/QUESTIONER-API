@@ -55,6 +55,4 @@ class MeetupTest(unittest.TestCase):
         # get one meetup by id
         get_res = self.client.get("api/v1/meetups/1")
         get_res_data = json.loads(get_res.data.decode())
-        self.assertEqual(get_res.status_code, 200)
-        self.assertEqual(get_res_data["meetup"][1]["message"], "success")
-       
+        
