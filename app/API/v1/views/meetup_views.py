@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify,Blueprint
+from flask import Flask, request, jsonify,Blueprint,make_response
 from app.API.v1.models.meetup_models import Meetup
 meetupbp = Blueprint('meetupbp', __name__)
 
@@ -22,11 +22,13 @@ def post_meetup():
 
     return jsonify({'meetup': added_meetup, "status": 201, "message":
                     "meetup created successfully"})
+    
 
 @meetupbp.route('/api/v1/meetups/', methods=["GET"])
 def get_meetups():
-    
-    return jsonify(Meetup.meetup_list)
+    meetups = Meetup.meetup_list
+    return make_response(jsonify({"meetups":meetups, "status":200, "message":"success"}),200)
+
 
 
 @meetupbp.route('/api/v1/meetups/<meetupId>', methods=["GET"])
