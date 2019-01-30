@@ -33,10 +33,14 @@ def get_meetups():
 
 @meetupbp.route('/api/v1/meetups/<meetupId>', methods=["GET"])
 def fetch_single_meetup(meetupId):
-        """Deals with fetching a single meetup."""
-        meetups = Meetup.meetup_list
-        single_meetup = [mp for mp in meetups if mp["meeetupId"] == meetupId]
-        if single_meetup:
-            return single_meetup
-        else:
-            return "meetup Not Found"
+    """Deals with fetching a single meetup."""
+    meetup = Meetup('createdon', 'topic', 'location', 'happeningon',"tags").get_meetup(meetupId)
+    if meetup:
+            return make_response(jsonify({
+            "status": 200,
+            "meetup": meetup
+        }))
+
+    return make_response(jsonify({
+        "message": "meetup not found"}), 404)
+
