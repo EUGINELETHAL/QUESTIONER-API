@@ -21,7 +21,7 @@ def post_meetup():
     added_meetup = new_meetup.save_meetup()
 
     return jsonify({'meetup': added_meetup, "status": 201, "message":
-                    "meetup created  sucessfully"})
+                    "meetup created successfully"})
 
 @meetupbp.route('/api/v1/meetups/', methods=["GET"])
 def get_meetups():

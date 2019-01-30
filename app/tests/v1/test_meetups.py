@@ -3,8 +3,9 @@ Tests for meetups operations
 """
 
 import unittest
-import json
 from app import create_app
+import json
+
 
 
 class MeetupTest(unittest.TestCase):
@@ -19,11 +20,18 @@ class MeetupTest(unittest.TestCase):
         self.meetup = {
             "meetupId": "1",
             "topic": "Javascript",
-            "created_on": "Thu, 10 Jan 2019 18:17:59 GMT",
+            "createdon": "Thu, 10 Jan 2019 18:17:59 GMT",
             "host": "Eugine",
             "location": "Mombasa ",
-            "happening on": "5th Jan",
+            "happeningon": "5th Jan",
             "summary": "ES6 syntax",
             "tags": "react redux ",
             
         }
+    def test_create_meetup(self):
+        '''test the endpoint of creating new meetup'''
+
+        
+
+            
+        
