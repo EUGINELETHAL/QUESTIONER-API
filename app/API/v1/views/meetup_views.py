@@ -31,16 +31,33 @@ def get_meetups():
 
 
 
-@meetupbp.route('/api/v1/meetups/<meetupId>', methods=["GET"])
+@meetupbp.route('/api/v1/meetups/<int:meetupId>', methods=["GET"])
 def fetch_single_meetup(meetupId):
     """Deals with fetching a single meetup."""
     meetup = Meetup('createdon', 'topic', 'location', 'happeningon',"tags").get_meetup(meetupId)
     if meetup:
             return make_response(jsonify({
             "status": 200,
-            "meetup": meetup
-        }))
+            "meetup": meetup,
+            "message":"Success"
+        }),200)
 
-    return make_response(jsonify({
-        "message": "meetup not found"}), 404)
+    return make_response(jsonify({ "status" :404,
+        "message": "Meetup not found"}), 404)
 
+@meetupbp.route("/api/v1/meetups/<int:meetupId>/rsvps", methods=["POST"])
+def meetup_rsvp(meetupId):
+    '''
+     endpoint for rsvp/ confirming meeting attendance
+    '''
+    rsvp_data = request.get_json()
+
+    if not rsvp_data:
+        return jsonify({"status": 400, "message": "expects only Application/JSON data"}), 400
+
+    meetupId = meetupId
+    userId = rsvp_data.get('userId')
+    response = rsvp_data.get('response')
+
+    rsvp = Meetup('createdon', 'topic', 'location', 'happeningon',"tags").meetupRsvp(userId, meetupId, response)
+    return jsonify({"status": 200, "data": rsvp})

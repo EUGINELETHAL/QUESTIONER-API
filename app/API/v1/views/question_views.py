@@ -19,8 +19,8 @@ def post():
 
         new_question = Question(createdby, meetup, title, body, votes, createdon)
         save_question = new_question.create_question_record()
-        return jsonify(({'question': save_question,"status": 201, "message":
-                    "question created  sucessfully"}),201)
+        return jsonify({'question': save_question,"status": 201, "message":
+                    "question created successfully"})
 
 @questionbp.route('/questions/<int:question_id>/upvote', methods=["PATCH"])
 def upvote_question(question_id):

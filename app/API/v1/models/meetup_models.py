@@ -3,7 +3,16 @@ from datetime import datetime
 
 class Meetup():
 
-    meetup_list = []
+    meetup_list = [ {"meetupId": 1,
+            "topic": "Javascript",
+            "createdon": "Thu, 10 Jan 2019 18:17:59 GMT",
+            "host": "Eugine",
+            "location": "Mombasa ",
+            "happeningon": "5th Jan",
+            "summary": "ES6 syntax",
+            "tags": "react redux "}]
+    rsvps = []
+
     """
     define all meetup attributes and methods
 
@@ -42,12 +51,24 @@ class Meetup():
         Method for getting one meetup record
         '''
         meetups = Meetup.meetup_list
-        single_meetup = [meetup for meetup in meetups if meetup["id"] == meetupId]
+        single_meetup = [meetup for meetup in meetups if meetup["meetupId"] == meetupId]
         if single_meetup:
-            return single_meetup
-        else:
-            return "Meetup not found."
+            return single_meetup,{"message":"Meetup found"}
+        
 
     def allMeetups(self):
         '''method for getting all meetup records'''
         return Meetup.meetup_list
+    def meetupRsvp(self, userId, meetupId, response):
+        '''
+        Method for getting rsvp meetup
+        '''
+        rsvp_data = {
+            "rsvpId": str(len(Meetup.rsvps) + 1),
+            "meetupId": meetupId,
+            "userId": userId,
+            "response": response
+        }
+
+        Meetup.rsvps.append(rsvp_data)
+        return rsvp_data, {"message": "attendance status confirmed"}
